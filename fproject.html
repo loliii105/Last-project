@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skywings | The Future of Travel</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+    <style>
+        :root {
+            --primary: #2887ff;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --text-gray: #64748b;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg: #020617;
+            --text: #f8fafc;
+            --card: #1e293b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        body {
+            background: var(--bg, #fff);
+            color: var(--text, #0f172a);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+        }
+
+
+        .hero {
+            height: 100vh;
+            background: url('photos/header-bg (1).jpg') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 20px;
+            z-index: 10;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            z-index: 10;
+            opacity: 0.9;
+        }
+
+        .plane-img {
+            width: 70%;
+            margin-top: -50px;
+            z-index: 5;
+            filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.3));
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+
+        .stats-floating {
+            display: flex;
+            justify-content: space-around;
+            background: var(--primary);
+            width: 80%;
+            margin: -60px auto 0;
+            padding: 2rem;
+            border-radius: 20px;
+            color: white;
+            box-shadow: 0 20px 40px rgba(40, 135, 255, 0.3);
+            position: relative;
+            z-index: 20;
+        }
+
+
+        .intro-section {
+            padding: 100px 10%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .intro-text h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .intro-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-gray);
+        }
+
+        .destination-grid {
+            padding: 50px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .dest-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 350px;
+            cursor: pointer;
+        }
+
+        .dest-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .dest-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .dest-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+        }
+
+
+        .booking-area {
+            padding: 100px 5%;
+            background: url('photos/showcase (1).jpg') center/cover fixed;
+            display: flex;
+            justify-content: center;
+        }
+
+        .glass-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 3rem;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 100%;
+            max-width: 600px;
+            color: white;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+        }
+
+
+        footer {
+            background: #0a0a0a;
+            color: white;
+            padding: 80px 5% 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-col h3 {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+            color: #ccc;
+            cursor: pointer;
+        }
+
+        .footer-col ul li:hover {
+            color: var(--primary);
+        }
+
+        .btn-main {
+            padding: 12px 30px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-main:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(40, 135, 255, 0.4);
+        }
+
+        .theme-switch {
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo" style="font-weight: 900; font-size: 1.8rem; color: #fff;">SKYWINGS</div>
+        <div style="display: flex; align-items: center; gap: 20px;">
+            <div class="theme-switch" id="themeBtn"><i class="ri-moon-clear-fill"></i></div>
+            <button class="btn-main" onclick="document.getElementById('form-sec').scrollIntoView()">Book Ticket</button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>Experience The Magic Of Flight!</h1>
+        <p>Your journey begins here, where seamless planning meets unforgettable experiences across the globe.</p>
+        <img src="photos/header (1).png" class="plane-img" alt="Airplane">
+    </header>
+
+    <div class="stats-floating">
+        <div>
+            <h3>10+</h3>
+            <p>Years Experience</p>
+        </div>
+        <div>
+            <h3>12K</h3>
+            <p>Happy Clients</p>
+        </div>
+        <div>
+            <h3>4.8</h3>
+            <p>Overall Rating</p>
+        </div>
+    </div>
+
+    <section class="intro-section">
+        <div class="intro-text">
+            <h2>Journey To The Sky Made Simple!</h2>
+            <p>
+                Explore the world with ease and excitement through our comprehensive travel platform.
+                From finding hidden gems in bustling cities to discovering serene retreats off the beaten path,
+                every detail is thoughtfully arranged. We don't just book flights; we craft memories.
+            </p>
+            <button class="btn-main" style="margin-top: 20px;">Explore More</button>
+        </div>
+        <div class="intro-image">
+            <img src="photos/pngtree-the-view-from-the-window-jet-aircraft-image_15807534.jpg"
+                style="width: 100%; border-radius: 30px; box-shadow: 20px 20px 0 var(--primary);">
+        </div>
+    </section>
+
+    <h2 style="text-align: center; font-size: 2.5rem; margin-top: 50px;">Popular Destinations</h2>
+    <div class="destination-grid" id="destGrid">
+    </div>
+
+    <section class="booking-area" id="form-sec">
+        <div class="glass-form">
+            <h2 style="margin-bottom: 20px; text-align: center;">Secure Your Seat</h2>
+            <form id="bookingForm">
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="input-group">
+                    <label>Preferred Destination</label>
+                    <input type="text" id="destInput" placeholder="Where to?" required>
+                </div>
+                <div class="input-group">
+                    <label>Travel Date</label>
+                    <input type="date" required>
+                </div>
+                <button type="submit" class="btn-main" style="width: 100%; padding: 15px;">Confirm Booking</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-col">
+            <h3>Skywings</h3>
+            <p>Explore the world with ease and excitement through our comprehensive travel platform.</p>
+        </div>
+        <div class="footer-col">
+            <h3>Quick Links</h3>
+            <ul>
+                <li>Home</li>
+                <li>Flights</li>
+                <li>Hotels</li>
+                <li>Cruise</li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h3>Contact Us</h3>
+            <ul>
+                <li><i class="ri-phone-fill"></i> +91 9876543210</li>
+                <li><i class="ri-mail-fill"></i> info@skywings</li>
+                <li><i class="ri-map-pin-fill"></i> New Delhi, India</li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+
+        const destinations = [
+            { name: "Paris", info: "City of Lights", img: "photos/destination-2 (1).jpg", temp: "18°C" },
+            { name: "Bali", info: "Tropical Paradise", img: "photos/destination-3 (1).jpg", temp: "30°C" },
+            { name: "New York", info: "Concrete Jungle", img: "photos/destination-1 (1).jpg", temp: "12°C" },
+            { name: "Sharm Alshaikh", info: "Magic and buety", img: "photos/sharm-el-sheikh-2026-featured-585x327.jpeg", temp: "25°C" }
+        ];
+
+
+        const grid = document.getElementById('destGrid');
+        grid.innerHTML = destinations.map(d => `
+            <div class="dest-card" onclick="setDest('${d.name}')">
+                <img src="${d.img}">
+                <div class="dest-overlay">
+                    <h3>${d.name}</h3>
+                    <p>${d.info} | <i class="ri-sun-cloudy-line"></i> ${d.temp}</p>
+                </div>
+            </div>
+        `).join('');
+
+
+        function setDest(name) {
+            document.getElementById('destInput').value = name;
+            document.getElementById('form-sec').scrollIntoView({ behavior: 'smooth' });
+        }
+
+
+        const themeBtn = document.getElementById('themeBtn');
+        themeBtn.onclick = () => {
+            const body = document.documentElement;
+            if (body.hasAttribute('data-theme')) {
+                body.removeAttribute('data-theme');
+                themeBtn.innerHTML = '<i class="ri-moon-clear-fill"></i>';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeBtn.innerHTML = '<i class="ri-sun-fill"></i>';
+            }
+        };
+
+
+        document.getElementById('bookingForm').onsubmit = (e) => {
+            e.preventDefault();
+            alert("Booking Request Sent Successfully! ✈️");
+        };
+    </script>
+</body>
+
+</html>
